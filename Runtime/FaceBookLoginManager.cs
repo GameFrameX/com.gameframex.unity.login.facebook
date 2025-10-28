@@ -93,6 +93,10 @@ namespace GameFrameX.Login.FaceBook.Runtime
         {
             _loginSuccess = loginSuccess;
             _loginFail = loginFail;
+#if UNITY_EDITOR
+            _loginSuccess?.Invoke(new FaceBookLoginSuccess() { Name = "test", Id = SystemInfo.deviceUniqueIdentifier, Uid = SystemInfo.deviceUniqueIdentifier, PhotoUrl = "test", Email = "test@facebook.com" });
+            return;
+#endif
             _shareSDK.Authorize(PlatformType.Facebook);
         }
 
