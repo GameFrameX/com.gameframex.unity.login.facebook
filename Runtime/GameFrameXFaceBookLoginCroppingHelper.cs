@@ -16,7 +16,6 @@ namespace GameFrameX.Login.FaceBook.Runtime
         void Start()
         {
             _ = typeof(GameFrameX.Login.FaceBook.Runtime.FaceBookLoginComponent);
-            _ = typeof(GameFrameX.Login.FaceBook.Runtime.FaceBookLoginLinkBridge);
             _ = typeof(GameFrameX.Login.FaceBook.Runtime.FaceBookLoginManager);
             _ = typeof(GameFrameX.Login.FaceBook.Runtime.FaceBookLoginSuccess);
             _ = typeof(GameFrameX.Login.FaceBook.Runtime.IFaceBookLoginManager);
