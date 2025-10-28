@@ -24,6 +24,11 @@ namespace GameFrameX.Login.FaceBook.Runtime
         private EventComponent _eventComponent;
         private ShareSDK _shareSDK;
 
+        /// <summary>
+        /// 初始化 Facebook 登录组件。
+        /// </summary>
+        /// <param name="appId">Facebook 登录 App Id。</param>
+        /// <param name="appKey">Facebook 登录 App Key。</param>
         [UnityEngine.Scripting.Preserve]
         public void Init(string appId, string appKey)
         {
@@ -88,6 +93,11 @@ namespace GameFrameX.Login.FaceBook.Runtime
         private Action<FaceBookLoginSuccess> _loginSuccess;
         private Action<int> _loginFail;
 
+        /// <summary>
+        /// 登录 Facebook 账号。
+        /// </summary>
+        /// <param name="loginSuccess">登录成功回调。</param>
+        /// <param name="loginFail">登录失败回调。</param>
         [UnityEngine.Scripting.Preserve]
         public void Login(Action<FaceBookLoginSuccess> loginSuccess, Action<int> loginFail)
         {
@@ -100,6 +110,9 @@ namespace GameFrameX.Login.FaceBook.Runtime
             _shareSDK.Authorize(PlatformType.Facebook);
         }
 
+        /// <summary>
+        /// 退出登录 Facebook 账号。
+        /// </summary>
         [UnityEngine.Scripting.Preserve]
         public void LogOut()
         {

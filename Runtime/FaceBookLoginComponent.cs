@@ -21,8 +21,14 @@ namespace GameFrameX.Login.FaceBook.Runtime
     {
         private IFaceBookLoginManager _FaceBookLoginManager = null;
 
+        /// <summary>
+        /// FaceBook AppId。
+        /// </summary>
         [SerializeField] private string m_AppId = string.Empty;
 
+        /// <summary>
+        /// FaceBook AppKey。
+        /// </summary>
         [SerializeField] private string m_AppKey = string.Empty;
 
         /// <summary>
@@ -42,18 +48,29 @@ namespace GameFrameX.Login.FaceBook.Runtime
             }
         }
 
+        /// <summary>
+        /// 初始化 FaceBook 登录组件。
+        /// </summary>
         [UnityEngine.Scripting.Preserve]
         public void Init()
         {
             _FaceBookLoginManager.Init(m_AppId, m_AppKey);
         }
 
+        /// <summary>
+        /// 登录 Facebook 账号。
+        /// </summary>
+        /// <param name="loginSuccess">登录成功回调。</param>
+        /// <param name="loginFail">登录失败回调。</param>
         [UnityEngine.Scripting.Preserve]
         public void Login(Action<FaceBookLoginSuccess> loginSuccess, Action<int> loginFail)
         {
             _FaceBookLoginManager.Login(loginSuccess, loginFail);
         }
 
+        /// <summary>
+        /// 退出登录 Facebook 账号。
+        /// </summary>
         [UnityEngine.Scripting.Preserve]
         public void LogOut()
         {
