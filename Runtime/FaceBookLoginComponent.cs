@@ -6,6 +6,7 @@
 
 using System;
 using GameFrameX.Runtime;
+using GameFrameX.ShareSdk.Runtime;
 using UnityEngine;
 
 namespace GameFrameX.Login.FaceBook.Runtime
@@ -17,7 +18,7 @@ namespace GameFrameX.Login.FaceBook.Runtime
     [AddComponentMenu("Game Framework/FaceBook Login")]
     [RequireComponent(typeof(GameFrameXFaceBookLoginCroppingHelper))]
     [UnityEngine.Scripting.Preserve]
-    public class FaceBookLoginComponent : GameFrameworkComponent
+    public class FaceBookLoginComponent : GameFrameworkComponent, IMopShareSDKHandler
     {
         private IFaceBookLoginManager _FaceBookLoginManager = null;
 

@@ -23,6 +23,7 @@ namespace GameFrameX.Login.FaceBook.Runtime
 
         private EventComponent _eventComponent;
         private ShareSDK _shareSDK;
+        private bool isInit = false;
 
         /// <summary>
         /// 初始化 Facebook 登录组件。
@@ -32,6 +33,11 @@ namespace GameFrameX.Login.FaceBook.Runtime
         [UnityEngine.Scripting.Preserve]
         public void Init(string appId, string appKey)
         {
+            if (isInit)
+            {
+                return;
+            }
+
             _eventComponent = GameEntry.GetComponent<EventComponent>();
             _eventComponent.CheckSubscribe(AuthEventArgs.EventId, OnAuthEventArgs);
             _shareSDK = UnityEngine.Object.FindObjectOfType<ShareSDK>();
@@ -42,6 +48,7 @@ namespace GameFrameX.Login.FaceBook.Runtime
             _shareSDK.devInfo.facebookAccount.AppSecret = appKey;
 
             _shareSDK.devInfo.facebookMessenger.AppId = appId;
+            isInit = true;
         }
 
         private void OnAuthEventArgs(object sender, GameEventArgs e)
