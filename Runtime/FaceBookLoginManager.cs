@@ -62,39 +62,50 @@ namespace GameFrameX.Login.FaceBook.Runtime
 
                 if (eventArgs.State == ResponseState.Success)
                 {
-                    var faceBookLoginSuccess = new FaceBookLoginSuccess();
-                    if (eventArgs.Data.ContainsKey("name"))
-                    {
-                        faceBookLoginSuccess.Name = eventArgs.Data["name"].ToString();
-                    }
-
-                    if (eventArgs.Data.ContainsKey("id"))
-                    {
-                        faceBookLoginSuccess.Id = eventArgs.Data["id"].ToString();
-                    }
-
-                    if (eventArgs.Data.ContainsKey("uid"))
-                    {
-                        faceBookLoginSuccess.Uid = eventArgs.Data["uid"].ToString();
-                    }
-
-                    if (eventArgs.Data.ContainsKey("picture"))
-                    {
-                        faceBookLoginSuccess.PhotoUrl = eventArgs.Data["picture"].ToString();
-                    }
-
-                    if (eventArgs.Data.ContainsKey("email"))
-                    {
-                        faceBookLoginSuccess.Email = eventArgs.Data["email"].ToString();
-                    }
-
-                    _loginSuccess.Invoke(faceBookLoginSuccess);
+                    Success();
                 }
                 else
                 {
-                    _loginFail.Invoke((int)eventArgs.State);
+                    _loginFail?.Invoke((int)eventArgs.State);
                 }
             }
+        }
+
+
+        private void Success()
+        {
+            var faceBookLoginSuccess = new FaceBookLoginSuccess();
+            var authInfo = _shareSDK.GetAuthInfo(PlatformType.Facebook);
+            Log.Debug(authInfo);
+            if (authInfo != null)
+            {
+                if (authInfo.ContainsKey("name"))
+                {
+                    faceBookLoginSuccess.Name = authInfo["name"].ToString();
+                }
+
+                if (authInfo.ContainsKey("id"))
+                {
+                    faceBookLoginSuccess.Id = authInfo["id"].ToString();
+                }
+
+                if (authInfo.ContainsKey("uid"))
+                {
+                    faceBookLoginSuccess.Uid = authInfo["uid"].ToString();
+                }
+
+                if (authInfo.ContainsKey("picture"))
+                {
+                    faceBookLoginSuccess.PhotoUrl = authInfo["picture"].ToString();
+                }
+
+                if (authInfo.ContainsKey("email"))
+                {
+                    faceBookLoginSuccess.Email = authInfo["email"].ToString();
+                }
+            }
+
+            _loginSuccess?.Invoke(faceBookLoginSuccess);
         }
 
         private Action<FaceBookLoginSuccess> _loginSuccess;
@@ -114,9 +125,13 @@ namespace GameFrameX.Login.FaceBook.Runtime
             _loginSuccess?.Invoke(new FaceBookLoginSuccess() { Name = "test", Id = SystemInfo.deviceUniqueIdentifier, Uid = SystemInfo.deviceUniqueIdentifier, PhotoUrl = "test", Email = "test@facebook.com" });
             return;
 #endif
+            if (_shareSDK.IsAuthorized(PlatformType.Facebook))
+            {
+                Success();
+                return;
+            }
+
             _shareSDK.Authorize(PlatformType.Facebook);
-            var authInfo = _shareSDK.GetAuthInfo(PlatformType.Facebook);
-            Log.Debug(authInfo);
         }
 
         /// <summary>
