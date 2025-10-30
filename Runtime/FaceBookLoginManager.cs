@@ -115,6 +115,8 @@ namespace GameFrameX.Login.FaceBook.Runtime
             return;
 #endif
             _shareSDK.Authorize(PlatformType.Facebook);
+            var authInfo = _shareSDK.GetAuthInfo(PlatformType.Facebook);
+            Log.Debug(authInfo);
         }
 
         /// <summary>
