@@ -79,29 +79,34 @@ namespace GameFrameX.Login.FaceBook.Runtime
             Log.Debug(authInfo);
             if (authInfo != null)
             {
-                if (authInfo.ContainsKey("name"))
+                if (authInfo.ContainsKey("userName"))
                 {
-                    faceBookLoginSuccess.Name = authInfo["name"].ToString();
+                    faceBookLoginSuccess.NickName = authInfo["userName"].ToString();
                 }
 
-                if (authInfo.ContainsKey("id"))
+                if (authInfo.ContainsKey("userID"))
                 {
-                    faceBookLoginSuccess.Id = authInfo["id"].ToString();
+                    faceBookLoginSuccess.UserId = authInfo["userID"].ToString();
                 }
 
-                if (authInfo.ContainsKey("uid"))
+                if (authInfo.ContainsKey("userID"))
                 {
-                    faceBookLoginSuccess.Uid = authInfo["uid"].ToString();
+                    faceBookLoginSuccess.UserId = authInfo["userID"].ToString();
                 }
 
-                if (authInfo.ContainsKey("picture"))
+                if (authInfo.ContainsKey("userIcon"))
                 {
-                    faceBookLoginSuccess.PhotoUrl = authInfo["picture"].ToString();
+                    faceBookLoginSuccess.PhotoUrl = authInfo["userIcon"].ToString();
                 }
 
-                if (authInfo.ContainsKey("email"))
+                if (authInfo.ContainsKey("token"))
                 {
-                    faceBookLoginSuccess.Email = authInfo["email"].ToString();
+                    faceBookLoginSuccess.Token = authInfo["token"].ToString();
+                }
+
+                if (authInfo.ContainsKey("userGender"))
+                {
+                    faceBookLoginSuccess.UserGender = authInfo["userGender"].ToString();
                 }
             }
 
@@ -122,7 +127,7 @@ namespace GameFrameX.Login.FaceBook.Runtime
             _loginSuccess = loginSuccess;
             _loginFail = loginFail;
 #if UNITY_EDITOR
-            _loginSuccess?.Invoke(new FaceBookLoginSuccess() { Name = "test", Id = SystemInfo.deviceUniqueIdentifier, Uid = SystemInfo.deviceUniqueIdentifier, PhotoUrl = "test", Email = "test@facebook.com" });
+            _loginSuccess?.Invoke(new FaceBookLoginSuccess() { NickName = "test@facebook.com", UserId = SystemInfo.deviceUniqueIdentifier, PhotoUrl = "test", Token = "test", UserGender = "f", OpenId = "test", UnionId = "test" });
             return;
 #endif
             if (_shareSDK.IsAuthorized(PlatformType.Facebook))

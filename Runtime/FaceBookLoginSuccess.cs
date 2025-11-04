@@ -38,38 +38,50 @@ namespace GameFrameX.Login.FaceBook.Runtime
     public sealed class FaceBookLoginSuccess
     {
         /// <summary>
-        /// Email
+        /// UserID,用户唯一ID，不会为空
         /// </summary>
         [UnityEngine.Scripting.Preserve]
-        public string Email { get; set; }
+        public string UserId { get; set; }
 
         /// <summary>
-        /// DisplayName
+        /// Token
         /// </summary>
         [UnityEngine.Scripting.Preserve]
-        public string Name { get; set; }
+        public string Token { get; set; }
 
         /// <summary>
-        /// uid
+        /// NickName，不会为空
         /// </summary>
         [UnityEngine.Scripting.Preserve]
-        public string Uid { get; set; }
+        public string NickName { get; set; }
 
         /// <summary>
-        /// Id
+        /// openid,可能为空
         /// </summary>
         [UnityEngine.Scripting.Preserve]
-        public string Id { get; set; }
+        public string OpenId { get; set; }
 
         /// <summary>
-        /// PhotoUrl
+        /// UnionId,可能为空
+        /// </summary>
+        [UnityEngine.Scripting.Preserve]
+        public string UnionId { get; set; }
+
+        /// <summary>
+        /// PhotoUrl,用户头像URL,可能为空
         /// </summary>
         [UnityEngine.Scripting.Preserve]
         public string PhotoUrl { get; set; }
 
+        /// <summary>
+        /// userGender,用户性别,可能为空
+        /// </summary>
+        [UnityEngine.Scripting.Preserve]
+        public string UserGender { get; set; }
+
         public override string ToString()
         {
-            return $"Email:{Email} Name：{Name} Uid：{Uid} Id：{Id} PhotoUrl：{PhotoUrl}";
+            return $"NickName：{NickName} UnionId：{UnionId} OpenId：{OpenId} UserId：{UserId} Token：{Token} PhotoUrl：{PhotoUrl} UserGender：{UserGender}";
         }
     }
 }
