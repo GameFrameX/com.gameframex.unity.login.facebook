@@ -15,7 +15,7 @@ namespace GameFrameX.Login.FaceBook.Runtime
     /// FaceBook登录组件。
     /// </summary>
     [DisallowMultipleComponent]
-    [AddComponentMenu("Game Framework/FaceBook Login")]
+    [AddComponentMenu("GameFrameX/FaceBook Login")]
     [RequireComponent(typeof(GameFrameXFaceBookLoginCroppingHelper))]
     [UnityEngine.Scripting.Preserve]
     public class FaceBookLoginComponent : GameFrameworkComponent, IMopShareSDKHandler
