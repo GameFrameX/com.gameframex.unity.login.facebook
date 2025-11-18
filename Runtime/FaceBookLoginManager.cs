@@ -41,6 +41,7 @@ namespace GameFrameX.Login.FaceBook.Runtime
             _eventComponent = GameEntry.GetComponent<EventComponent>();
             _eventComponent.CheckSubscribe(AuthEventArgs.EventId, OnAuthEventArgs);
             _shareSDK = UnityEngine.Object.FindObjectOfType<ShareSDK>();
+#if UNITY_ANDROID
             _shareSDK.devInfo.facebook.ConsumerKey = appId;
             _shareSDK.devInfo.facebook.ConsumerSecret = appKey;
 
@@ -48,6 +49,16 @@ namespace GameFrameX.Login.FaceBook.Runtime
             _shareSDK.devInfo.facebookAccount.AppSecret = appKey;
 
             _shareSDK.devInfo.facebookMessenger.AppId = appId;
+#endif
+#if UNITY_IOS || UNITY_IPHONE
+            _shareSDK.devInfo.facebook.api_key = appId;
+            _shareSDK.devInfo.facebook.app_secret = appKey;
+
+            _shareSDK.devInfo.facebookAccount.app_id = appId;
+            _shareSDK.devInfo.facebookAccount.client_token = appKey;
+
+            _shareSDK.devInfo.facebookMessenger.api_key = appId;
+#endif
             isInit = true;
         }
 
