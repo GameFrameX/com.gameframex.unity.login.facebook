@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/gameframex/com.gameframex.unity.login.facebook/compare/1.1.0...1.1.1) (2026-01-20)
+
+
+### Bug Fixes
+
+* **FaceBook登录:** 将登录失败回调参数从int改为string类型 ([62cc2fa](https://github.com/gameframex/com.gameframex.unity.login.facebook/commit/62cc2fa28ba0fced7dd13510f3301f6496c4d4ee))
+
 # [1.1.0](https://github.com/gameframex/com.gameframex.unity.login.facebook/compare/1.0.0...1.1.0) (2025-12-23)
 
 
