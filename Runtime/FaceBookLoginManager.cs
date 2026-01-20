@@ -102,7 +102,7 @@ namespace GameFrameX.Login.FaceBook.Runtime
                 }
                 else
                 {
-                    _loginFail?.Invoke((int)eventArgs.State);
+                    _loginFail?.Invoke(eventArgs.State.ToString());
                 }
             }
         }
@@ -150,7 +150,7 @@ namespace GameFrameX.Login.FaceBook.Runtime
         }
 
         private Action<FaceBookLoginSuccess> _loginSuccess;
-        private Action<int> _loginFail;
+        private Action<string> _loginFail;
 
         /// <summary>
         /// 登录 Facebook 账号。
@@ -158,7 +158,7 @@ namespace GameFrameX.Login.FaceBook.Runtime
         /// <param name="loginSuccess">登录成功回调。</param>
         /// <param name="loginFail">登录失败回调。</param>
         [UnityEngine.Scripting.Preserve]
-        public void Login(Action<FaceBookLoginSuccess> loginSuccess, Action<int> loginFail)
+        public void Login(Action<FaceBookLoginSuccess> loginSuccess, Action<string> loginFail)
         {
             _loginSuccess = loginSuccess;
             _loginFail = loginFail;

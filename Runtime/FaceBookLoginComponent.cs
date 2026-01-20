@@ -89,7 +89,7 @@ namespace GameFrameX.Login.FaceBook.Runtime
         /// <param name="loginSuccess">登录成功回调。</param>
         /// <param name="loginFail">登录失败回调。</param>
         [UnityEngine.Scripting.Preserve]
-        public void Login(Action<FaceBookLoginSuccess> loginSuccess, Action<int> loginFail)
+        public void Login(Action<FaceBookLoginSuccess> loginSuccess, Action<string> loginFail)
         {
             _FaceBookLoginManager.Login(loginSuccess, loginFail);
         }
