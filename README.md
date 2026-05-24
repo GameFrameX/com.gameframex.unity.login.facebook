@@ -1,78 +1,98 @@
-# GameFrameX.Login.FaceBook Facebook登录
+<div align="center">
+  <img src="https://download.alianblank.com/gameframex/gameframex_logo_320.png" alt="Game Frame X Logo" width="160" />
+</div>
 
-> GameFrameX.Login.FaceBook 是 GameFrameX 框架的 Facebook 登录组件。
+# Game Frame X Facebook Login
 
-## 功能
+[![GitHub release](https://img.shields.io/github/v/release/GameFrameX/com.gameframex.unity.login.facebook?style=flat-square)](https://github.com/GameFrameX/com.gameframex.unity.login.facebook/releases)
+[![License](https://img.shields.io/github/license/GameFrameX/com.gameframex.unity.login.facebook?style=flat-square)](https://github.com/GameFrameX/com.gameframex.unity.login.facebook/blob/main/LICENSE.md)
+[![Documentation](https://img.shields.io/badge/Documentation-Online-blue?style=flat-square)](https://gameframex.doc.alianblank.com)
 
-- `初始化`
-- `登录`
-- `登出`
+**All-in-One Solution for Indie Game Development · Empowering Indie Developers' Dreams**
 
-## 使用方法
+[Documentation](https://gameframex.doc.alianblank.com) · [Quick Start](#quick-start) · [QQ Group](https://qm.qq.com/q/5s5e1e6e6e)
 
-1. **挂载组件**
-   在 `GameEntry` 游戏入口对象上挂载 `FaceBookLoginComponent` 组件。
+**Language**: **English** | [简体中文](README.zh-CN.md) | [繁體中文](README.zh-TW.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
-2. **设置参数**
-   在 `FaceBookLoginComponent` 组件上设置 `AppId` 和 `AppKey`。
+---
 
-3. **调用方法**
-   ```csharp
-   // 获取Facebook登录组件
-   var faceBookLoginComponent = GameEntry.GetComponent<FaceBookLoginComponent>();
+## Project Overview
 
-   // 初始化
-   faceBookLoginComponent.Init();
+Game Frame X Facebook Login is a Facebook login component for the GameFrameX framework, providing initialization, login, and logout capabilities.
 
-   // 登录
-   faceBookLoginComponent.Login(
-       (faceBookLoginSuccess) =>
-       {
-           Debug.Log($"登录成功! {JsonUtility.ToJson(faceBookLoginSuccess)}");
-       },
-       (code) =>
-       {
-           Debug.LogError($"登录失败! {code}");
-       });
+## Quick Start
 
-   // 登出
-   faceBookLoginComponent.LogOut();
+### Installation
+
+Choose one of the following methods:
+
+1. Add the following to the `dependencies` section in your project's `manifest.json`:
+   ```json
+   {"com.gameframex.unity.login.facebook": "https://github.com/AlianBlank/com.gameframex.unity.login.facebook.git"}
    ```
 
-## Android 配置
+2. Use `Git URL` in Unity's Package Manager:
+   ```
+   https://github.com/AlianBlank/com.gameframex.unity.login.facebook.git
+   ```
 
-### 1. 添加字符串资源
+3. Download the repository and place it in your Unity project's `Packages` directory. It will be loaded automatically.
 
-在项目 `res/values/strings.xml` 文件中添加 `facebook_app_id` 字符串，值为 Facebook 后台生成的 `AppId`。
+## Usage Examples
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!--  这里填写后台生成的ID-->
-    <string name="facebook_app_id">YOUR_APP_ID</string>
-</resources>
+1. Attach the `FaceBookLoginComponent` component to the `GameEntry` game object.
+2. Set the `AppId` and `AppKey` on the `FaceBookLoginComponent` component.
+3. Call the methods:
+
+```csharp
+// Get Facebook login component
+var faceBookLoginComponent = GameEntry.GetComponent<FaceBookLoginComponent>();
+
+// Initialize
+faceBookLoginComponent.Init();
+
+// Login
+faceBookLoginComponent.Login(
+    (faceBookLoginSuccess) =>
+    {
+        Debug.Log($"Login successful! {JsonUtility.ToJson(faceBookLoginSuccess)}");
+    },
+    (code) =>
+    {
+        Debug.LogError($"Login failed! {code}");
+    });
+
+// Logout
+faceBookLoginComponent.LogOut();
 ```
 
-### 2. 配置 AndroidManifest.xml
+## Platform Configuration
 
-在 `AndroidManifest.xml` 文件的 `application` 节点下添加 `meta-data`。
+### Android
 
-```xml
-<meta-data
-    android:name="com.facebook.sdk.ApplicationId"
-    android:value="@string/facebook_app_id"/>
-```
+1. Add the `facebook_app_id` string resource in `res/values/strings.xml`:
+   ```xml
+   <?xml version="1.0" encoding="utf-8"?>
+   <resources>
+       <string name="facebook_app_id">YOUR_APP_ID</string>
+   </resources>
+   ```
 
-在 `AndroidManifest.xml` 文件的 `manifest` 节点下添加网络权限。
-```xml
-<uses-permission android:name="android.permission.INTERNET"/>
-```
+2. Add `meta-data` in the `application` node of `AndroidManifest.xml`:
+   ```xml
+   <meta-data
+       android:name="com.facebook.sdk.ApplicationId"
+       android:value="@string/facebook_app_id"/>
+   ```
 
-## iOS 配置
+3. Add internet permission in the `manifest` node:
+   ```xml
+   <uses-permission android:name="android.permission.INTERNET"/>
+   ```
 
-### 1. 更新 Info.plist
+### iOS
 
-在 `Info.plist` 文件中添加以下键值对：
+Update `Info.plist` with the following keys:
 
 ```xml
 <key>CFBundleURLTypes</key>
@@ -89,3 +109,18 @@
 <key>FacebookDisplayName</key>
 <string>YOUR_APP_NAME</string>
 ```
+
+## Dependencies
+
+- `com.gameframex.unity`: GameFrameX core framework
+- `com.gameframex.unity.sharesdk`: ShareSDK integration
+
+## Documentation & Resources
+
+- Documentation: https://gameframex.doc.alianblank.com
+- Repository: https://github.com/GameFrameX/com.gameframex.unity.login.facebook
+- Issues: https://github.com/GameFrameX/com.gameframex.unity.login.facebook/issues
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE.md) for details.
